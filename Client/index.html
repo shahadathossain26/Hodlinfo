@@ -32,10 +32,14 @@
                     </select>
                 </li>
             </ul>
-            <div>
+            <div class="navbar_end">
                 <span class="timer">60</span>
                 <button class="tel_btn"><img class="tel_img" src="./images/connect_telegram.png" alt=""> Connect
                     Telegram</button>
+
+                <div class="toogle_btn">
+                    <span class="indicator"></span>
+                </div>
             </div>
         </nav>
         <div class="powered_by">Powered
@@ -44,12 +48,12 @@
 
     <main>
         <table>
-            <thead>
+            <thead class="table_head">
                 <th>#</th>
                 <th>Name</th>
                 <th>Last</th>
                 <th>Buy/Sell Price</th>
-                <th>Volumn</th>
+                <th>Volume</th>
                 <th>Base Unit</th>
             </thead>
             <tbody>
@@ -57,17 +61,34 @@
             </tbody>
         </table>
     </main>
-    <!-- <script>
-        async function getPosts() {
-            const myPosts = await fetch('https://api.wazirx.com/api/v2/tickers');
-            const response = await myPosts.json();
-            const topPosts = response.
-                console.log(response);
+
+    <script>
+        fetch('http://localhost:5000/tickers')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+                data.forEach((ticker, i) => {
+                    const markup = `<tr class="table_row">
+    <td>${i + 1}</td>
+    <td>${ticker.name}</td>
+    <td>${ticker.last}</td>
+    <td>${ticker.buy} / ${ticker.sell}</td>
+    <td>${ticker.volume}</td>
+    <td>${ticker.base_unit}</td>
+</tr>`
+                    document.querySelector('tbody').insertAdjacentHTML("beforeend", markup);
+                })
+            })
+            .catch(error => console.log(error));
+
+        const toggle = document.querySelector('.toogle_btn');
+        toggle.onclick = function () {
+            toggle.classList.toggle('active');
+            document.body.classList.toggle('light_theme')
         }
-
-
-        getPosts();
-    </script> -->
+    </script>
 </body>
 
 </html>

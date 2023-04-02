@@ -6,8 +6,20 @@
 }
 
 body {
-    background: #191D28;
+    background: var(--primary-color);
 
+}
+
+:root {
+    --primary-color: #191D28;
+    --secondary-color: #fff;
+    --third-color: #2E3241;
+}
+
+.light_theme {
+    --primary-color: #fff;
+    --secondary-color: #191D28;
+    --third-color: rgb(237, 234, 234);
 }
 
 nav {
@@ -36,8 +48,8 @@ nav {
 #currency {
     padding: 9px 10px;
     text-align: center;
-    background: #2E3241;
-    color: white;
+    background: var(--third-color);
+    color: var(--secondary-color);
     font-size: 1rem;
     font-weight: semibold;
     border: none;
@@ -45,6 +57,11 @@ nav {
     font-family: 'Oswald', sans-serif;
     width: 70px;
 
+}
+
+.navbar_end {
+    display: flex;
+    align-items: center;
 }
 
 .timer {
@@ -55,18 +72,19 @@ nav {
     border-radius: 50%;
     padding: 7px 10px;
     font-weight: bold;
+    margin-right: 10px;
 }
 
 .tel_btn {
     width: 180px;
-    color: white;
+    color: var(--secondary-color);
     background: #3DC6C1;
     font-size: 1rem;
     padding: 8px 5px;
     text-align: center;
     border-radius: 10px;
     border: none;
-
+    margin-right: 10px;
 }
 
 .tel_img {
@@ -79,4 +97,56 @@ nav {
     font-size: 17px;
     margin-left: 40px;
     margin-top: -23px;
+}
+
+table {
+    width: 100%;
+    height: 100vh;
+    padding: 0 20px;
+
+    margin-top: 50px;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+
+}
+
+.table_head {
+    color: #76797F;
+    font-size: 17px;
+}
+
+.table_row {
+    background: var(--third-color);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    border: 1px solid #2E3241;
+}
+
+.toogle_btn {
+    position: relative;
+    width: 60px;
+    height: 34px;
+    background: var(--third-color);
+    border-radius: 25px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.indicator {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    right: 0;
+    background: #3DC6C1;
+    border-radius: 50%;
+    transform: scale(0.9);
+    transition: 0.4s;
+}
+
+.toogle_btn.active .indicator {
+    right: 30px;
 }
