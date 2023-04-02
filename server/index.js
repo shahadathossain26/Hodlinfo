@@ -42,39 +42,21 @@ async function run() {
                     base_unit: ticker.base_unit,
 
                 }
-
-                const result = await tickersCollection.insertOne(newTicker);
-
+                const storedTicker = await tickersCollection.findOne(newTicker);
+                if (!storedTicker) {
+                    const result = await tickersCollection.insertOne(newTicker);
+                }
 
             }
         }
         getPosts();
 
-        // app.get('/tickers', async (req, res) => {
+        app.get('/tickers', async (req, res) => {
+            const query = {};
+            const result = await tickersCollection.find(query).toArray();
+            res.send(result);
 
-        //     const myTickers = await fetch('https://api.wazirx.com/api/v2/tickers');
-        //     const response = await myTickers.json();
-        //     const tickers = Object.values(response);
-        //     const topTickers = tickers.slice(0, 10);
-        //     for (let i = 0; i <= topTickers.length; i++) {
-        //         const ticker = topTickers[i];
-        //         const newTicker = {
-        //             name: ticker.name,
-        //             last: ticker.last,
-        //             buy: ticker.buy,
-        //             sell: ticker.sell,
-        //             volume: ticker.volume,
-        //             base_unit: ticker.base_unit,
-
-        //         }
-
-        //     }
-
-
-        //     const result = await tickersCollection.insert(topTickers);
-        //     res.send(result);
-
-        // })
+        })
 
 
     }
